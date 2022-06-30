@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget{
               width: 6,
             ),
             Center(
+
               child: Text("Interface", style: TextStyle(fontSize: 18, color: Colors.green),),
             ),
           ],
