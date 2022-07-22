@@ -8,12 +8,22 @@ class ShopApp extends StatefulWidget {
 }
 
 class _ShopAppState extends State<ShopApp> {
+
+  final List<String> _listItem=[
+    "images/image_1.jpeg",
+    "images/image_2.jpg",
+    "images/image_3.png",
+    "images/image_4.jpg",
+    "images/image_5.jpg",
+  ];
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Colors.blueAccent[100],
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.blueAccent[100],
         title: Center(child: Text("ShopApp"),),
         leading: Icon(Icons.menu),
         actions: [
@@ -79,53 +89,52 @@ class _ShopAppState extends State<ShopApp> {
               ],
             ),
           ),
-          Column(
-            children: [
-              Row(
-                children: [
 
-                  Expanded(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8),
-                      child: Container(
-                        height: 100,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: Container(
-                        height: 100,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(13),
-                          image: DecorationImage(
-                            image: AssetImage('images/noutbook.png'),
-                            fit: BoxFit.cover
-                          )
-                        ),
-
-                      ),
-                    ),
-                  )
-                ],
+          Expanded(
+            child: Container(
+              child: GridView.count(
+                padding: EdgeInsets.only(left: 8, right: 8),
+                crossAxisCount: 1,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                children:
+                  _listItem.map((item) => cellOflist(item)).toList()
+                // _listItem.map((item) => cellOfList(item)).toList(),
               ),
-
-            ],
+            ),
           )
+
         ],
       )
     );
   }
+
+  Widget cellOflist(String item){
+    return Card(
+      color: Colors.transparent,
+      elevation: 0,
+      child: Container(
+        padding: EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          image: DecorationImage(
+            image: AssetImage(item),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Icon(
+              Icons.star,
+              color: Colors.yellow,
+              size: 35,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
 }
